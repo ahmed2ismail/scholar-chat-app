@@ -1,0 +1,138 @@
+import 'package:chat_app/constants.dart';
+import 'package:chat_app/helper/show_snack_bar.dart';
+import 'package:chat_app/screens/chat_screen.dart';
+import 'package:chat_app/screens/signup_screen.dart';
+import 'package:chat_app/widgets/custom_button.dart';
+import 'package:chat_app/widgets/custom_textformfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  static String id = 'LoginPage';
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool isLoading = false;
+  String? password, email;
+
+  final GlobalKey<FormState> formKey = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Scaffold(
+        backgroundColor: kPrimaryColor,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Form(
+            key: formKey,
+            child: ListView(
+              padding: EdgeInsets.only(top: 75),
+              children: [
+                Image.asset('assets/images/scholar.png', height: 100),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Scholar Chat',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                        fontFamily: "Pacifico",
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 60),
+                Row(
+                  children: [
+                    Text(
+                      'Login',
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                CustomTextFormField(
+                  hintText: 'Email',
+                  onChanged: (data) {
+                    email = data;
+                  },
+                ),
+                SizedBox(height: 10),
+                CustomTextFormField(
+                  obscureText: true,
+                  hintText: 'Password',
+                  onChanged: (data) {
+                    password = data;
+                  },
+                ),
+                CustomButton(
+                  textButton: "Login",
+                  onTap: () async {
+                    if (formKey.currentState!.validate()) {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      try {
+                        await loginUser();
+                        Navigator.pushNamed(context, ChatScreen.id,arguments: email);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          showSnackBar(
+                            context,
+                            message: 'No user found for that email.',
+                          );
+                        } else if (e.code == 'wrong-password') {
+                          showSnackBar(
+                            context,
+                            message: 'Wrong password provided for that user.',
+                          );
+                        }
+                      } catch (e) {
+                        showSnackBar(context, message: e.toString());
+                      }
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'don\'t have an account ?',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, SignupScreen.id);
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(color: Color(0xffC7EDE6)),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> loginUser() async {
+    final userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email!, password: password!);
+  }
+}
