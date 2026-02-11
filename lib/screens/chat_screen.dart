@@ -56,7 +56,7 @@ class ChatScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(kLogo, height: 50),
-                  Text('Scholar Chat', style: TextStyle(color: Colors.white)),
+                  const Text('Scholar Chat', style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
@@ -101,21 +101,21 @@ class ChatScreen extends StatelessWidget {
                         // _scrollControler.position.maxScrollExtent,
                         // 0.0 بمعني اول ال ListView عملناها عشان نحل مشكلة ان البيانات تظهر بشكل طبيعي علي اكتر من جهاز مفتوح في نفس الوقت fixing chatting
                         0.0, // عشان احنا عاملين reverse: true في ال ListView.builder فبالتالي اخر رسالة هتكون في ال top
-                        duration: Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 300),
                         curve: Curves.easeIn,
                       );
                     },
                     decoration: InputDecoration(
                       hintText: 'Send Message',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      suffixIcon: Icon(Icons.send),
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      suffixIcon: const Icon(Icons.send),
                       suffixIconColor: kPrimaryColor,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: kPrimaryColor),
+                        borderSide: const BorderSide(color: kPrimaryColor),
                       ),
                     ),
                   ),
@@ -125,7 +125,7 @@ class ChatScreen extends StatelessWidget {
           );
         } else {
           // اعمل انديكاتور في حالة الداتا دي  كانت ب null
-          return Center(
+          return const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,

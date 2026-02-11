@@ -34,10 +34,10 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Form(
             key: formKey,
             child: ListView(
-              padding: EdgeInsets.only(top: 75),
+              padding: const EdgeInsets.only(top: 75),
               children: [
                 Image.asset('assets/images/scholar.png', height: 100),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 60),
-                Row(
+                const Row(
                   children: [
                     Text(
                       'Login',
@@ -59,14 +59,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 CustomTextFormField(
                   hintText: 'Email',
                   onChanged: (data) {
                     email = data;
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 CustomTextFormField(
                   obscureText: true,
                   hintText: 'Password',
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'don\'t have an account ?',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         Navigator.pushNamed(context, SignupScreen.id);
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign Up',
                         style: TextStyle(color: Color(0xffC7EDE6)),
                       ),
@@ -132,7 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> loginUser() async {
-    final userCredential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email!, password: password!);
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email!, password: password!);
   }
 }

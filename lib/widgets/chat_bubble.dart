@@ -14,10 +14,10 @@ class ChatBubble extends StatelessWidget {
       alignment:
           Alignment.centerLeft, // خلت ال Container ياخد مساحة ال child بتاعه
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         // مينفعش تبقي موجودة لانها بتعمل مساحة للنص وملهاش لازمة alignment: Alignment.centerLeft,
-        padding: EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(32),
             topRight: Radius.circular(32),
@@ -25,7 +25,7 @@ class ChatBubble extends StatelessWidget {
           ),
           color: kPrimaryColor,
         ),
-        child: Text(message.message, style: TextStyle(color: Colors.white)),
+        child: Text(message.message, style: const TextStyle(color: Colors.white)),
       ),
     );
   }
@@ -43,10 +43,10 @@ class ChatBubbleForFriend extends StatelessWidget {
       alignment:
           Alignment.centerRight, // خلت ال Container ياخد مساحة ال child بتاعه
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         // مينفعش تبقي موجودة لانها بتعمل مساحة للنص وملهاش لازمة alignment: Alignment.centerLeft,
-        padding: EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(32),
             topRight: Radius.circular(32),
@@ -54,7 +54,7 @@ class ChatBubbleForFriend extends StatelessWidget {
           ),
           color: Color(0xFF006D84),
         ),
-        child: Text(message.message, style: TextStyle(color: Colors.white)),
+        child: Text(message.message, style: const TextStyle(color: Colors.white)),
       ),
     );
   }

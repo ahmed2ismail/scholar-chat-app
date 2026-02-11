@@ -23,8 +23,8 @@ class ScholarChatApp extends StatelessWidget {
       title: 'Scholar Chat App',
       initialRoute: LoginScreen.id,
       routes: {
-        LoginScreen.id: (context) => LoginScreen(),
-        SignupScreen.id: (context) => SignupScreen(),
+        LoginScreen.id: (context) => const LoginScreen(),
+        SignupScreen.id: (context) => const SignupScreen(),
         ChatScreen.id: (context) => ChatScreen(),
       },
     );

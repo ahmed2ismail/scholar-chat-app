@@ -39,10 +39,10 @@ class _SignupScreenState extends State<SignupScreen> {
             // ال key هو مفتاح للويدجت اللي اسمها Form وبيديني access لكل حاجة جواها يعني اقدر accessالحالة بتاعت ال Form عشان اعرف البيانات دي سليمة ولا لا
             key: formKey,
             child: ListView(
-              padding: EdgeInsets.only(top: 75),
+              padding: const EdgeInsets.only(top: 75),
               children: [
                 Image.asset('assets/images/scholar.png', height: 100),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -56,7 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ],
                 ),
                 const SizedBox(height: 60),
-                Row(
+                const Row(
                   children: [
                     Text(
                       'Sign Up',
@@ -64,14 +64,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 CustomTextFormField(
                   onChanged: (data) {
                     email = data;
                   },
                   hintText: 'Email',
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 CustomTextFormField(
                   onChanged: (data) {
                     password = data;
@@ -118,7 +118,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'already have an account ?',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -126,7 +126,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       onPressed: () {
                         Navigator.pop(context, LoginScreen.id);
                       },
-                      child: Text(
+                      child: const Text(
                         'Login',
                         style: TextStyle(color: Color(0xffC7EDE6)),
                       ),
@@ -142,7 +142,6 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Future<void> registerUser() async {
-    final UserCredential userCredential = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email!, password: password!);
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email!, password: password!);
   }
 }

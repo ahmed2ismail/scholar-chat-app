@@ -27,14 +27,14 @@ class CustomTextFormField extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white),
+        hintStyle: const TextStyle(color: Colors.white),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
         ),
       ),
     );
