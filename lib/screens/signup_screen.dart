@@ -13,7 +13,7 @@ class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
   static String id = 'SignupPage';
 
-  String? password,email;
+  String? password, email;
   bool isLoading = false;
 
   // عملت GlobalKey شغال مع FormState واسمه formKey واستدعيت ال constructor GlobalKey()
@@ -24,12 +24,12 @@ class SignupScreen extends StatelessWidget {
     // بعد معملنا validate هنحط ال Loading indicator بتاعنا اللي اسمه ModalProgressHUD فوق الاسكرين كلها يعني فوق ال Scaffold
     return BlocConsumer<SignupCubit, SignupState>(
       listener: (context, state) {
-        if (state is SignupLoading) {
+        if (state is SignupLoadingState) {
           isLoading = true;
-        } else if (state is SignupSuccess) {
+        } else if (state is SignupSuccessState) {
           isLoading = false;
-          Navigator.pushNamed(context, ChatScreen.id,arguments: email);
-        } else if (state is SignupFailure) {
+          Navigator.pushNamed(context, ChatScreen.id, arguments: email);
+        } else if (state is SignupFailureState) {
           isLoading = false;
           showSnackBar(context, message: state.errMessage);
         }
@@ -91,8 +91,10 @@ class SignupScreen extends StatelessWidget {
                       onTap: () async {
                         // من خلال ال formKey هاتلي ال currentState الحالة الحالية للمدخلات واعملي ليها validate يعني شوف هل هي بتطابق المواصفات اللي انا حددتها في خاصية ال validator: الموجودة جوه ال TextFormField ولا لا
                         if (formKey.currentState!.validate()) {
-                        // Triggering the cubit here:
-                          BlocProvider.of<SignupCubit>(context,).registerUser(email: email!, password: password!);
+                          // Triggering the cubit here:
+                          BlocProvider.of<SignupCubit>(
+                            context,
+                          ).registerUser(email: email!, password: password!);
                         }
                       },
                     ),

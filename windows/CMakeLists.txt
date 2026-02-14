@@ -52,11 +52,6 @@ add_subdirectory(${FLUTTER_MANAGED_DIR})
 # Application build; see runner/CMakeLists.txt.
 add_subdirectory("runner")
 
-
-# Generated plugin build rules, which manage building the plugins and adding
-# them to the application.
-include(flutter/generated_plugins.cmake)
-
 # --- Permanent fix for Firebase C++ SDK CMake warning ---
 # This script finds the CMakeLists.txt file from the extracted Firebase C++ SDK
 # and replaces the deprecated minimum version with a modern one.
@@ -71,6 +66,10 @@ if(EXISTS "${FIREBASE_SDK_CMAKELIST}")
   message(STATUS "Patched Firebase C++ SDK CMakeLists.txt to fix deprecation warning.")
 endif()
 # --- End of permanent fix ---
+
+# Generated plugin build rules, which manage building the plugins and adding
+# them to the application.
+include(flutter/generated_plugins.cmake)
 
 
 # === Installation ===
