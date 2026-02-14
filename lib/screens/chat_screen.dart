@@ -36,7 +36,7 @@ class ChatScreen extends StatelessWidget {
       // stream يعني حاجة بتفضل تجيلي كل ميحصل فيها تغيير
       // البيانات هتترتب حسب ال createdAt عشان الرسائل تظهر بالترتيب اللي اتكتبت بيه ودا اسمه ال query بمعني تنظيم البيانات زي منا عايز
       stream: messages.orderBy('createdAt', descending: true).snapshots(),
-      // .snapshots() جي بترجعلي stream of QuerySnapshot
+      // .snapshots() دي بترجعلي stream of QuerySnapshot
       builder: (context, snapshot) {
         // جوه ال builder اقدر ا check علي الداتا اللي راجعالي
         // هنعمل loading indicator لما الداتا بتاعت ال messages متكونش اتجاب لسه عشان ميرميش رسالة ب null
@@ -68,6 +68,7 @@ class ChatScreen extends StatelessWidget {
                     // عشان نعرض اخر رسالة في الاخر
                     reverse: true,
                     // ال ListView بتجبر ال width بتاع ال Container انها تاخد ال width بتاع ال screen المتاح ليها والحل هو استخدام ويدجت Align علي ال Container
+                    // controller دي بتاخد ال ScrollController اللي احنا انشأناه عشان نتحكم في ال ListView دي زي ما هنشوف بعدين في ال onSubmitted بتاع ال TextField عشان نحرك ال ListView لتحت عشان نشوف الرسالة الجديدة اللي اتضافت
                     controller: _scrollControler,
                     itemCount: messagesList.length,
                     itemBuilder: (context, index) {
