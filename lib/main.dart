@@ -1,4 +1,5 @@
 import 'package:chat_app/cubits/login_cubit/login_cubit.dart';
+import 'package:chat_app/cubits/signup_cubit/signup_cubit.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/signup_screen.dart';
@@ -18,15 +19,22 @@ class ScholarChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SignupCubit(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Scholar Chat App',
         initialRoute: LoginScreen.id,
         routes: {
           LoginScreen.id: (context) => LoginScreen(),
-          SignupScreen.id: (context) => const SignupScreen(),
+          SignupScreen.id: (context) => SignupScreen(),
           ChatScreen.id: (context) => ChatScreen(),
         },
       ),
