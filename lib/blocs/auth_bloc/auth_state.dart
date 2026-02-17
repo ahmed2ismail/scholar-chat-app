@@ -1,4 +1,4 @@
-part of 'auth_cubit.dart';
+part of 'auth_bloc.dart';
 
 @immutable
 sealed class AuthState {}
@@ -19,9 +19,7 @@ final class LoginFailureState extends AuthState {
 // signup page states
 final class SignupLoadingState extends AuthState {}
 
-final class SignupSuccessState extends AuthState {}
-
-final class SignupFailureState extends AuthState {
+final class SignupSuccessState extends AuthState {}final class SignupFailureState extends AuthState {
   final String errMessage;
 
   SignupFailureState({required this.errMessage});
