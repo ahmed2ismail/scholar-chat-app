@@ -10,6 +10,7 @@ class ChatScreen extends StatelessWidget {
   static String id = 'ChatPage';
 
   final TextEditingController controller = TextEditingController();
+
   final ScrollController _scrollControler = ScrollController();
 
   @override

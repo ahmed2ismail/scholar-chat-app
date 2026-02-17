@@ -1,5 +1,5 @@
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/cubits/signup_cubit/signup_cubit.dart';
+import 'package:chat_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
@@ -22,7 +22,7 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // بعد معملنا validate هنحط ال Loading indicator بتاعنا اللي اسمه ModalProgressHUD فوق الاسكرين كلها يعني فوق ال Scaffold
-    return BlocConsumer<SignupCubit, SignupState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignupLoadingState) {
           isLoading = true;
@@ -92,9 +92,9 @@ class SignupScreen extends StatelessWidget {
                         // من خلال ال formKey هاتلي ال currentState الحالة الحالية للمدخلات واعملي ليها validate يعني شوف هل هي بتطابق المواصفات اللي انا حددتها في خاصية ال validator: الموجودة جوه ال TextFormField ولا لا
                         if (formKey.currentState!.validate()) {
                           // Triggering the cubit here:
-                          BlocProvider.of<SignupCubit>(
+                          BlocProvider.of<AuthCubit>(
                             context,
-                          ).registerUser(email: email!, password: password!);
+                          ).signupUser(email: email!, password: password!);
                         }
                       },
                     ),
